@@ -1,0 +1,547 @@
+/* ============= IMPORTS ============= */
+
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+@import '_variables.scss';
+
+/* ============= GÉNÉRAL ============= */
+
+*,
+ ::before,
+ ::after {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    font-family: $karla;
+    font-size: $f-3;
+    background: $grey-2;
+    color: $white-90;
+    user-select: none;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    display: block;
+    text-decoration: none;
+    color: $white-90;
+}
+
+h1,
+h2,
+h3,
+p,
+a {
+    line-height: 1;
+}
+
+h1 {
+    font-family: $montserrat;
+    font-size: $f-1;
+    @include tablet {
+        font-size: 35px;
+    }
+    @include desktop {
+        font-size: 50px;
+    }
+}
+
+h2 {
+    font-size: $f-2;
+    @include tablet {
+        font-size: $f-1;
+    }
+}
+
+.bx {
+    @extend %flex;
+    font-size: 20px;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+input,
+textarea,
+button {
+    font-size: $f-3;
+    font-family: $karla;
+    border: 0;
+    outline: none;
+}
+
+.title_container {
+    margin-bottom: $m-2;
+}
+
+p {
+    line-height: 23px;
+    color: $white-60;
+}
+
+
+/* ============= IMG CONTAINER ============= */
+
+.img_container {
+    overflow: hidden;
+    img {
+        width: 100%;
+        &.img_card {
+            width: auto;
+            height: 250px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+}
+
+
+/* ============= SECTIONS ============= */
+
+section {
+    width: 100%;
+    .container {
+        padding: $p-5;
+        @include tablet {
+            padding: $pm-1 $pl-1;
+        }
+        @include laptop {
+            padding: $pxl-1 $pxl-2;
+        }
+        @include desktop {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    }
+}
+
+
+/* ============= BARRE DE NAVIGATION ============= */
+
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    background: transparent;
+    transition: all 0.2s ease-in-out;
+    padding: 0 $p-5;
+    @include tablet {
+        padding: 0 $pl-1;
+    }
+    &.scrolled_header {
+        background: $grey-1;
+        box-shadow: 0 5px 40px 0 rgba($color: $grey-2, $alpha: 0.3);
+        height: calc($header-height - 10px);
+        box-shadow: 0px 5px 20px -5px $grey-1;
+        @include tablet {
+            height: $header-height;
+        }
+    }
+    .navbar {
+        width: 100%;
+        height: $header-height;
+        @include flex-justify-content(space-between);
+        /* ============= ICON HAMBURGER POUR OUVRIR LA NAVIGATION ============= */
+        #btn-nav-hamburger {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            @include flex-justify-content(center);
+            .hamburger_bar {
+                position: relative;
+                width: 100%;
+                height: 2px;
+                background: $white-90;
+                transform: rotate(0deg);
+                @extend %fast-transition;
+            }
+            .hamburger_bar::before,
+            .hamburger_bar::after {
+                content: "";
+                position: absolute;
+                top: -10px;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background: $white-90;
+                transform: rotate(0deg);
+                @extend %fast-transition;
+            }
+            .hamburger_bar::after {
+                top: 10px;
+            }
+            /* ===== ON CLICK HAMBURGER BUTTON ===== */
+            .hamburger_bar.active_btn_hamburger {
+                transform: rotate(45deg);
+            }
+            .hamburger_bar.active_btn_hamburger::before,
+            .hamburger_bar.active_btn_hamburger::after {
+                top: 0;
+                transform: rotate(90deg);
+            }
+        }
+        /* ============= NOM DANS LA BARRE DE NAVIGATION ============= */
+        .navbar_brand h1 {
+            text-transform: uppercase;
+            font-size: $f-2;
+            @include tablet {
+                font-size: $f-1;
+            }
+        }
+        /* ============= LIST DE NAVIGATION ============= */
+        .navbar_list {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100vh;
+            padding: $header-height $p-5 $p-5 $p-5;
+            background: $grey-1;
+            z-index: -1;
+            @extend %fast-transition;
+            @include tablet {
+                padding: calc($header-height + 20px) $pl-1 $pm-1 $pl-1;
+            }
+            &.active_navbar {
+                left: 0;
+            }
+            .navbar_item {
+                margin-bottom: $m-4;
+                .navbar_link {
+                    display: inline-block;
+                    padding: $p-3;
+                    font-size: $f-2;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    @include tablet {
+                        padding: $p-4 0;
+                    }
+                }
+            }
+        }
+        #btn-contact {
+            width: 30px;
+            height: 30px;
+            @include flex-justify-content(center);
+            a {
+                .bx {
+                    font-size: $f-1;
+                }
+            }
+        }
+    }
+}
+
+
+/* ============= HOME ============= */
+
+#home {
+    height: 100vh;
+    @extend %flex;
+}
+
+
+/* ============= À PROPOS DE MOI ============= */
+
+#about-me {
+    background: $grey-1;
+    .container {
+        padding-bottom: $pm-2;
+    }
+}
+
+
+/* ============= BTS ============= */
+
+#bts {
+    background: $grey-1;
+    .container {
+        padding-top: $pm-2;
+    }
+}
+
+#parcours {
+    .container {
+        .timeline {
+            position: relative;
+            width: 100%;
+            padding: 15px 0;
+            &::after {
+                content: '';
+                position: absolute;
+                width: 2px;
+                background: #805FC1;
+                top: 0;
+                bottom: 0;
+                left: 5%;
+                margin-left: -1px;
+                z-index: -1;
+            }
+        }
+        .container {
+            width: 80%;
+            margin-left: 20px;
+            position: relative;
+            background: inherit;
+            padding: 0;
+            left: 5%;
+            &:not(:last-child) {
+                margin-bottom: 30px;
+            }
+            &::after {
+                left: -28px;
+            }
+            &::before {
+                left: -20px;
+            }
+            .date {
+                right: -75px;
+            }
+            &::after {
+                content: '';
+                position: absolute;
+                width: 16px;
+                height: 16px;
+                top: calc(50% - 8px);
+                background: #ffffff;
+                border: 2px solid #805FC1;
+                border-radius: 16px;
+                z-index: 1;
+            }
+            &::before {
+                content: '';
+                position: absolute;
+                width: 30px;
+                height: 2px;
+                top: calc(50% - 1px);
+                right: 8px;
+                background: #805FC1;
+                z-index: 1;
+            }
+            .content {
+                background: $grey-1;
+                padding: $p-4;
+                position: relative;
+                h2 {
+                    font-size: 18px;
+                    font-weight: normal;
+                    margin-bottom: $m-2;
+                }
+                p {
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
+
+
+/* ============= PROJETS ============= */
+
+#projets {
+    min-height: 40vh;
+    .list_projects {
+        width: 100%;
+        height: 100%;
+        @extend %flex;
+        flex-wrap: wrap;
+        .item_project {
+            width: 100%;
+            @include tablet {
+                width: 50%;
+            }
+            @include laptop {
+                width: 33.33%;
+            }
+            @include desktop {
+                width: 25%;
+            }
+            .project {
+                width: 100%;
+                position: relative;
+                overflow: hidden;
+                &::after {
+                    content: '';
+                    display: block;
+                    padding-bottom: 80%;
+                }
+                .img_container {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    transition: all 0.2s;
+                    img {
+                        width: 130%;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                    }
+                }
+                &:hover>.img_container {
+                    transform: scale(1.1);
+                }
+                &:hover>.btn_plus {
+                    bottom: 15px;
+                }
+                .btn_plus {
+                    @extend %flex;
+                    position: absolute;
+                    bottom: -40px;
+                    right: 15px;
+                    z-index: 10;
+                    padding: $p-2;
+                    background: $grey-2;
+                    color: $white-90;
+                    border-radius: 50%;
+                    transition: all 0.2s;
+                    transform: rotate(0deg);
+                }
+                .btn_plus.active_btn {
+                    transform: rotate(45deg);
+                }
+                .infos_project {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    padding: $p-5;
+                    overflow: scroll;
+                    background-color: rgba($color: $grey-1, $alpha: 0.7);
+                    backdrop-filter: blur(5px);
+                    visibility: hidden;
+                    opacity: 0;
+                    transition: all 0.2s;
+                    &.active_element {
+                        visibility: visible;
+                        opacity: 1;
+                    }
+                    h3 {
+                        margin-bottom: $m-2;
+                    }
+                    p {
+                        text-align: justify;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/* ============= CONTACT ============= */
+
+#contact {
+    .container {
+        p {
+            margin-bottom: $mm-1;
+            text-align: justify;
+        }
+        .form_container {
+            width: 100%;
+            @include tablet {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+            /* ============= FORMULAIRE ============= */
+            form {
+                width: 100%;
+                height: 400px;
+                padding: $pm-2;
+                margin-bottom: $m-4;
+                background: $grey-1;
+                box-shadow: 0px 5px 20px -5px $grey-1;
+                @include tablet {
+                    width: calc(100% - 150px);
+                    margin-bottom: 0;
+                    margin-right: $pm-2;
+                }
+                input,
+                textarea {
+                    display: block;
+                    width: 100%;
+                    padding: $p-3;
+                    margin-bottom: $m-4;
+                    background: $grey-3;
+                    color: $white-90;
+                    &::placeholder {
+                        color: $white-30;
+                    }
+                }
+                textarea {
+                    resize: none;
+                }
+                button {
+                    width: 150px;
+                    height: 45px;
+                    background: #805FC1;
+                    color: $white-90;
+                    box-shadow: 0px 5px 20px -5px #805FC1;
+                    border-radius: 30px;
+                    text-transform: uppercase;
+                }
+                /* ============= AUTOFOCUS ============= */
+                input:-webkit-autofill,
+                input:-webkit-autofill:hover,
+                input:-webkit-autofill:focus {
+                    -webkit-text-fill-color: $white-90;
+                    box-shadow: 0 0 0px 1000px $grey-3 inset;
+                    transition: background-color 5000s ease-in-out 0s;
+                }
+            }
+            /* ============= INFORMATIONS DE CONTACT ============= */
+            .contact_infos {
+                @extend %flex;
+                padding: $p-5;
+                background: $grey-1;
+                box-shadow: 0px 5px 20px -5px $grey-1;
+                @include tablet {
+                    padding: $pm-2;
+                    height: 400px;
+                }
+                .list_infos {
+                    width: 100%;
+                    @include flex-justify-content(space-around);
+                    @include tablet {
+                        display: block;
+                        .item:not(:last-child) {
+                            margin-bottom: $mm-2;
+                        }
+                    }
+                    .bx {
+                        font-size: 30px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/* ============= FOOTER ============= */
+
+#footer {
+    text-align: center;
+    background: $grey-1;
+    .copyright {
+        padding: $pm-2;
+        border-top: 1px solid rgba($color: $grey-1, $alpha: 0.2);
+        p {
+            color: $white-90;
+        }
+    }
+}
