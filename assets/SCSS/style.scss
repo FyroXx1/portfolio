@@ -143,11 +143,7 @@ section {
     &.scrolled_header {
         background: $grey-1;
         box-shadow: 0 5px 40px 0 rgba($color: $grey-2, $alpha: 0.3);
-        height: calc($header-height - 10px);
         box-shadow: 0px 5px 20px -5px $grey-1;
-        @include tablet {
-            height: $header-height;
-        }
     }
     .navbar {
         width: 100%;
@@ -249,7 +245,44 @@ section {
 
 #home {
     height: 100vh;
-    @extend %flex;
+    overflow: hidden;
+    @include flex-justify-content(center);
+    .container {
+        text-align: center;
+        @include tablet {
+            display: flex;
+            align-items: center;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+        }
+        .presentation_id {
+            width: 220px;
+            margin: 0 auto $m-4 auto;
+            @include tablet {
+                width: 250px;
+                margin: 0;
+            }
+            @include laptop {
+                width: 300px;
+            }
+            @include desktop {
+                width: 350px;
+            }
+        }
+        .presentation_infos {
+            h1 {
+                text-transform: uppercase;
+                color: $white-90;
+            }
+            p {
+                margin: $m-3 0;
+            }
+            @include tablet {
+                width: 60%;
+                text-align: left;
+            }
+        }
+    }
 }
 
 

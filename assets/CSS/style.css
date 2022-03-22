@@ -167,13 +167,7 @@ section .container {
 #header.scrolled_header {
   background: #131217;
   box-shadow: 0 5px 40px 0 rgba(29, 29, 34, 0.3);
-  height: 70px;
   box-shadow: 0px 5px 20px -5px #131217;
-}
-@media screen and (min-width: 768px) {
-  #header.scrolled_header {
-    height: 80px;
-  }
 }
 #header .navbar {
   width: 100%;
@@ -273,6 +267,52 @@ section .container {
 /* ============= HOME ============= */
 #home {
   height: 100vh;
+  overflow: hidden;
+  justify-content: center;
+}
+#home .container {
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  #home .container {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+}
+#home .container .presentation_id {
+  width: 220px;
+  margin: 0 auto 20px auto;
+}
+@media screen and (min-width: 768px) {
+  #home .container .presentation_id {
+    width: 250px;
+    margin: 0;
+  }
+}
+@media screen and (min-width: 992px) {
+  #home .container .presentation_id {
+    width: 300px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  #home .container .presentation_id {
+    width: 350px;
+  }
+}
+#home .container .presentation_infos h1 {
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+}
+#home .container .presentation_infos p {
+  margin: 15px 0;
+}
+@media screen and (min-width: 768px) {
+  #home .container .presentation_infos {
+    width: 60%;
+    text-align: left;
+  }
 }
 
 /* ============= À PROPOS DE MOI ============= */
