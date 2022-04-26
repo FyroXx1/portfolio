@@ -284,6 +284,8 @@ section .container {
 #home .container .presentation_id {
   width: 220px;
   margin: 0 auto 20px auto;
+  border-radius: 50%;
+  border: 10px solid #343439;
 }
 @media screen and (min-width: 768px) {
   #home .container .presentation_id {
@@ -326,9 +328,6 @@ section .container {
 /* ============= BTS ============= */
 #bts {
   background: #131217;
-}
-#bts .container {
-  padding-top: 40px;
 }
 
 #parcours .container .timeline {

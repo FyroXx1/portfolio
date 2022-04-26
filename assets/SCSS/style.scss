@@ -258,6 +258,8 @@ section {
         .presentation_id {
             width: 220px;
             margin: 0 auto $m-4 auto;
+            border-radius: 50%;
+            border: 10px solid $grey-3;
             @include tablet {
                 width: 250px;
                 margin: 0;
@@ -300,9 +302,6 @@ section {
 
 #bts {
     background: $grey-1;
-    .container {
-        padding-top: $pm-2;
-    }
 }
 
 #parcours {
